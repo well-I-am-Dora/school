@@ -1,0 +1,18 @@
+def euclid_algorithm(a, b):
+    if b == 0:
+        return a
+    else:
+        return euclid_algorithm(b, a % b)
+
+
+def symbol_counter():
+    text = list(input("Введите текст:  "))
+    symbol = input("Введите символ, частоту появления которого вы хотиту найти:  ")
+    symb_amount, text_length = sum(map(lambda s: 1 if s == symbol else 0, text)), len(text)
+    divider = euclid_algorithm(text_length, symb_amount)
+    return f"Частота появления символа {symbol} в данном тексте:" \
+           f"\n{str(symb_amount // divider).rjust(2, ' ')}\n---\n{str(text_length // divider).rjust(2, ' ')}"
+
+
+if __name__ == '__main__':
+    print(symbol_counter())
